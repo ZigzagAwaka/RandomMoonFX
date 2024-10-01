@@ -1,0 +1,42 @@
+# RandomMoonFX
+
+This mod will randomized the selected moon every day **upon using the ship's lever** !
+
+You don't need to route to a moon with the terminal, just use the ship's lever and the ship will route to a random moon before loading it, this can make the game more difficult...
+
+When there is 0 days left for the profit quota, it will always route to the Company Building.
+
+Compatible with v62/v64 of Lethal Company.
+
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/RandomMoonFX/main/preview.gif)
+
+![Preview](https://raw.githubusercontent.com/ZigzagAwaka/RandomMoonFX/main/preview2.gif)
+
+##
+
+### Compatibility
+- This mod is compatible with [LethalLevelLoader](https://thunderstore.io/c/lethal-company/p/IAmBatby/LethalLevelLoader/) and works with any custom moon that uses this API.
+- Compatible with [Celestial_Tint](https://thunderstore.io/c/lethal-company/p/sfDesat/Celestial_Tint/)'s routing animation.
+- Works well with the better screens feature of [GeneralImprovements](https://thunderstore.io/c/lethal-company/p/ShaosilGaming/GeneralImprovements/).
+- No issues from the ship's lever fix of [LethalFixes](https://thunderstore.io/c/lethal-company/p/Dev1A3/LethalFixes/).
+- Quota rollover mods are supported with the config `Quota check = false`
+
+### Features
+This mod is an upgrade of the original **RandomMoon** mod and adds some bug fixes and improvements to make it compatible with the latest game updates.
+- Uses the ship's routing animation before the start of the level
+- Synchronize the chosen moon info on the ship's monitor
+- Removes the 'Halt!' warning on the last day when auto routing to the Company Building
+- Prevent the random selection of Gordion before the last day of the quota
+- Prevent the random selection of Liquidation since the moon is disabled in vanilla (fixed a softlock)
+- Updated to the latest version of the game and compatible with LLL to avoid any desync between players
+
+### Contact
+If you want to suggest new features or contact me please go to the mod page in the [modding discord](https://discord.com/invite/lcmod).
+
+###
+
+##
+
+# Credits
+
+Original mod created by of [Beepsterr](https://thunderstore.io/c/lethal-company/p/Beepsterr/RandomMoon/)

@@ -1,0 +1,9 @@
+{
+    "name": "RandomMoonFX",
+    "version_number": "1.2.4",
+    "website_url": "",
+    "description": "Randomize the moon every day upon using the ship's lever. Compatible with LethalLevelLoader and Celestial_Tint.",
+    "dependencies": [
+        "BepInEx-BepInExPack-5.4.2100"
+    ]
+}
