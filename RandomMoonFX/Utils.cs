@@ -20,5 +20,28 @@ namespace RandomMoonFX
                 return true;
             }
         }
+
+        static public bool IsMoonValid(SelectableLevel selectableLevel)
+        {
+            if (selectableLevel.PlanetName == "44 Liquidation" || selectableLevel.PlanetName == "71 Gordion")
+                return false;
+            if (!Plugin.config.ExcludePreviouslyVisited.Value)
+                return true;
+            if (Plugin.instance.VisitedMoons.Count == 0 || !Plugin.instance.VisitedMoons.Contains(selectableLevel.PlanetName))
+            {
+                Plugin.instance.VisitedMoons.Add(selectableLevel.PlanetName);
+                return true;
+            }
+            else
+            {
+                if (Plugin.instance.VisitedMoons.Count == StartOfRound.Instance.levels.Length - 2)
+                {
+                    Plugin.instance.VisitedMoons.Clear();
+                    Plugin.instance.VisitedMoons.Add(selectableLevel.PlanetName);
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }

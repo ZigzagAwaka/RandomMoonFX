@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using HarmonyLib;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RandomMoonFX
@@ -9,7 +10,7 @@ namespace RandomMoonFX
     {
         const string GUID = "zigzag.randommoonfx";
         const string NAME = "RandomMoonFX";
-        const string VERSION = "1.2.4";
+        const string VERSION = "1.2.5";
 
         public static Plugin instance;
         private readonly Harmony harmony = new Harmony(GUID);
@@ -18,6 +19,7 @@ namespace RandomMoonFX
         private readonly int GordionID = 3;
         public float AnimationTime = 1.5f;
         public bool IsStarting = false;
+        public List<string> VisitedMoons = new List<string>();
 
         void Awake()
         {
@@ -60,7 +62,7 @@ namespace RandomMoonFX
                 while (selectableLevel.PlanetName == TimeOfDay.Instance.currentLevel.PlanetName)
                 {
                     selectableLevel = StartOfRound.Instance.levels[UnityEngine.Random.Range(0, StartOfRound.Instance.levels.Length)];
-                    if (selectableLevel.PlanetName == "44 Liquidation" || selectableLevel.PlanetName == "71 Gordion")
+                    if (!Utils.IsMoonValid(selectableLevel))
                     {
                         selectableLevel = TimeOfDay.Instance.currentLevel;
                     }

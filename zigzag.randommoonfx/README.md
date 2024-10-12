@@ -24,6 +24,7 @@ Compatible with v62/v64 of Lethal Company.
 ### Features
 This mod is an upgrade of the original **RandomMoon** mod and adds some bug fixes and improvements to make it compatible with the latest game updates.
 - Uses the ship's routing animation before the start of the level
+- Ads a config to make moons only be chosen once, will reset if every moons have been visited (false by default)
 - Synchronize the chosen moon info on the ship's monitor
 - Removes the 'Halt!' warning on the last day when auto routing to the Company Building
 - Prevent the random selection of Gordion before the last day of the quota

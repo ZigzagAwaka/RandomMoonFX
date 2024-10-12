@@ -1,3 +1,8 @@
+## 1.2.5
+- **Updated**
+    - Added a new config `Exclude previously visited`, false by default
+    - You can set this to true if you want to exclude already visited moons from the randomization method. The visited moons list will reset when all moons have been seen once.
+
 ## 1.2.4
 - **Updated**
     - Added Github repository
