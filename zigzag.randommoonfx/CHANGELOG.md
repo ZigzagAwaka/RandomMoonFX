@@ -1,3 +1,12 @@
+# 1.3.0
+- **Added**
+    - Added compatibility with [Chameleon](https://thunderstore.io/c/lethal-company/p/ButteryStancakes/Chameleon/) routing animation if you are using the `PlanetPreview` feature (`Chameleon animation` config added)
+    - Added `Animation time override` config to allow changing the default routing animation time
+- **Updated**
+    - Added 2 configs, both of them true by default
+        - `Activate Random Moons` allows the mod to actually randomize the moons, you can disable it for testing
+        - `Activate Free Moons` make all moons free when manually routing in the terminal (avoid people wasting money by using the terminal to route to a moon). This config works even if `Activate Random Moons` is false
+
 ## 1.2.5
 - **Updated**
     - Added a new config `Exclude previously visited`, false by default

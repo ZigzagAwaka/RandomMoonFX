@@ -42,6 +42,7 @@ namespace RandomMoonFX
         }
     }
 
+
     [HarmonyPatch(typeof(StartMatchLever))]
     internal class StartMatchLeverPatch
     {
@@ -65,6 +66,50 @@ namespace RandomMoonFX
                 && Plugin.instance.LastDayOfQuota())
             {
                 __instance.triggerScript.timeToHold = 0.7f;
+            }
+        }
+    }
+
+
+    [HarmonyPatch(typeof(Terminal))]
+    internal class TerminalPatch
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch("Awake")]
+        public static void AwakePatch()
+        {
+            Plugin.instance.terminal = Object.FindObjectOfType<Terminal>();
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("LoadNewNode")]
+        public static void LoadNewNodePrePatch(ref TerminalNode node)
+        {
+            if (Plugin.instance.terminal != null && node != null && node.buyRerouteToMoon == -2)
+            {
+                Plugin.instance.terminalCostOfItems = Plugin.instance.terminal.totalCostOfItems;
+                Plugin.instance.terminal.totalCostOfItems = 0;
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch("LoadNewNode")]
+        public static void LoadNewNodePostPatch(ref TerminalNode node)
+        {
+            if (Plugin.instance.terminal != null && node != null && Plugin.instance.terminalCostOfItems != -5)
+            {
+                Plugin.instance.terminal.totalCostOfItems = 0;
+                Plugin.instance.terminalCostOfItems = -5;
+            }
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch("LoadNewNodeIfAffordable")]
+        public static void LoadNewNodeIfAffordablePatch(ref TerminalNode node)
+        {
+            if (Plugin.instance.terminal != null && node != null && node.buyRerouteToMoon != -1)
+            {
+                node.itemCost = 0;
             }
         }
     }
