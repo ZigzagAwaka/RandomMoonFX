@@ -29,6 +29,7 @@ This mod is an upgrade of the original **RandomMoon** mod and adds some bug fixe
 - Uses the ship's routing animation before the start of the level
 - Configurable time for the routing animation, other than the default values
 - A config to make moons only be chosen once, will reset if every moons have been visited (false by default)
+- Configurable moons blacklist to prevent specific moons to be chosen randomly
 - Synchronize the chosen moon info on the ship's monitor
 - Removes the 'Halt!' warning on the last day when auto routing to the Company Building
 - Prevent the random selection of Gordion before the last day of the quota

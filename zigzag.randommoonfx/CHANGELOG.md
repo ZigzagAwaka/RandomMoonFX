@@ -1,3 +1,8 @@
+## 1.3.1
+- **Updated**
+    - Added a new config `Moons Blacklist`, empty by default
+    - You can add any moons you want in this list to make them unable to be chosen by the randomization method
+
 # 1.3.0
 - **Added**
     - Added compatibility with [Chameleon](https://thunderstore.io/c/lethal-company/p/ButteryStancakes/Chameleon/) routing animation if you are using the `PlanetPreview` feature (`Chameleon animation` config added)

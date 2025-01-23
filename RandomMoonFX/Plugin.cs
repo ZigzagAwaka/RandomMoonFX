@@ -11,7 +11,7 @@ namespace RandomMoonFX
     {
         const string GUID = "zigzag.randommoonfx";
         const string NAME = "RandomMoonFX";
-        const string VERSION = "1.3.0";
+        const string VERSION = "1.3.1";
 
         public static Plugin instance;
         private readonly Harmony harmony = new Harmony(GUID);
@@ -44,6 +44,7 @@ namespace RandomMoonFX
         private void SetParameters()
         {
             config = new Config(base.Config);
+            config.SetupCustomConfigs();
             if (config.ChameleonAnimation.Value && Chainloader.PluginInfos.ContainsKey("butterystancakes.lethalcompany.chameleon"))
                 AnimationTime = 7.5f;
             if (config.CelestialTintAnimation.Value && Chainloader.PluginInfos.ContainsKey("CelestialTint"))

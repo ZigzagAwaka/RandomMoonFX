@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace RandomMoonFX
 {
@@ -25,6 +26,8 @@ namespace RandomMoonFX
         {
             if (selectableLevel.PlanetName == "44 Liquidation" || selectableLevel.PlanetName == "71 Gordion")
                 return false;
+            if (IsMoonBlacklisted(selectableLevel))
+                return false;
             if (!Plugin.config.ExcludePreviouslyVisited.Value)
                 return true;
             if (Plugin.instance.VisitedMoons.Count == 0 || !Plugin.instance.VisitedMoons.Contains(selectableLevel.PlanetName))
@@ -34,13 +37,26 @@ namespace RandomMoonFX
             }
             else
             {
-                if (Plugin.instance.VisitedMoons.Count == StartOfRound.Instance.levels.Length - 2)
+                if (Plugin.instance.VisitedMoons.Count == StartOfRound.Instance.levels.Length - 2 - Plugin.config.MoonsBlacklist.Count)
                 {
                     Plugin.instance.VisitedMoons.Clear();
                     Plugin.instance.VisitedMoons.Add(selectableLevel.PlanetName);
                     return true;
                 }
                 return false;
+            }
+        }
+
+        static public bool IsMoonBlacklisted(SelectableLevel selectableLevel)
+        {
+            if (Plugin.config.MoonsBlacklist.Count == 0)
+                return false;
+            else
+            {
+                var moonName = Regex.Replace(selectableLevel.PlanetName, "^[0-9]+", string.Empty);
+                if (moonName[0] == ' ')
+                    moonName = moonName[1..];
+                return Plugin.config.MoonsBlacklist.Exists((i) => i == moonName);
             }
         }
     }
