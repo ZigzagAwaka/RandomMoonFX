@@ -1,3 +1,7 @@
+## 1.3.2
+- **Fixed**
+    - `Moons Blacklist` config is now comma separated
+
 ## 1.3.1
 - **Updated**
     - Added a new config `Moons Blacklist`, empty by default
