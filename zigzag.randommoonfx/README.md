@@ -17,6 +17,7 @@ Compatible with v62/v64/v69 of Lethal Company.
 ### Compatibility
 - This mod is compatible with [LethalLevelLoader](https://thunderstore.io/c/lethal-company/p/IAmBatby/LethalLevelLoader/) and works with any custom moon that uses this API.
 - Compatible with [Celestial_Tint](https://thunderstore.io/c/lethal-company/p/sfDesat/Celestial_Tint/) and [Chameleon](https://thunderstore.io/c/lethal-company/p/ButteryStancakes/Chameleon/) special routing animations.
+- Compatibility with [Wesleys_Moons](https://thunderstore.io/c/lethal-company/p/Magic_Wesley/Wesleys_Moons/): the chosen moon on the last day will be Galetry instead of Gordion
 - Works well with the better screens feature of [GeneralImprovements](https://thunderstore.io/c/lethal-company/p/ShaosilGaming/GeneralImprovements/).
 - No issues from the ship's lever fix of [LethalFixes](https://thunderstore.io/c/lethal-company/p/Dev1A3/LethalFixes/).
 - Quota rollover mods are supported with the config `Quota check = false`

@@ -1,3 +1,9 @@
+## 1.3.3
+- **Added**
+    - Added compatibility with [Wesleys_Moons](https://thunderstore.io/c/lethal-company/p/Magic_Wesley/Wesleys_Moons/): Galetry will now be chosen on the last day instead of Gordion if you have this mod installed (`Galetry Company Moon` config added)
+- **Updated**
+    - Galetry is now ignored by the randomization method until the last day (no need to have it blacklisted anymore)
+
 ## 1.3.2
 - **Fixed**
     - `Moons Blacklist` config is now comma separated

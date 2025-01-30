@@ -11,13 +11,14 @@ namespace RandomMoonFX
     {
         const string GUID = "zigzag.randommoonfx";
         const string NAME = "RandomMoonFX";
-        const string VERSION = "1.3.2";
+        const string VERSION = "1.3.3";
 
         public static Plugin instance;
         private readonly Harmony harmony = new Harmony(GUID);
         internal static Config config { get; private set; } = null!;
 
         private readonly int GordionID = 3;
+        public int GaletryID = -99;
         public float AnimationTime = 1.5f;
         public bool IsStarting = false;
         public Terminal? terminal;
@@ -51,6 +52,8 @@ namespace RandomMoonFX
                 AnimationTime = 4f;
             if (config.AnimationTimeOverride.Value >= 0f)
                 AnimationTime = config.AnimationTimeOverride.Value;
+            if (config.GaletryCompany.Value && Chainloader.PluginInfos.ContainsKey("JacobG5.WesleyMoons"))
+                GaletryID = -1;
         }
 
         public bool LastDayOfQuota()
@@ -67,6 +70,28 @@ namespace RandomMoonFX
         {
             if (LastDayOfQuota())
             {
+                if (GaletryID != -99)
+                {
+                    if (GaletryID == -1)
+                    {
+                        foreach (var level in StartOfRound.Instance.levels)
+                        {
+                            if (level.PlanetName == "98 Galetry")
+                            {
+                                GaletryID = level.levelID;
+                                break;
+                            }
+                        }
+                    }
+                    if (GaletryID != -1)
+                    {
+                        Logger.LogInfo("Force navigating to 98 Galetry");
+                        StartOfRound.Instance.ChangeLevelServerRpc(GaletryID, FindObjectOfType<Terminal>().groupCredits);
+                        IsStarting = true;
+                        return;
+                    }
+                    Logger.LogError("Galetry Moon was not found");
+                }
                 Logger.LogInfo("Force navigating to the Company Building");
                 StartOfRound.Instance.ChangeLevelServerRpc(GordionID, FindObjectOfType<Terminal>().groupCredits);
             }
