@@ -7,11 +7,12 @@ using System.Collections.Generic;
 namespace RandomMoonFX
 {
     [BepInPlugin(GUID, NAME, VERSION)]
+    [BepInDependency("com.github.darmuh.LethalConstellations", BepInDependency.DependencyFlags.SoftDependency)]
     public class Plugin : BaseUnityPlugin
     {
         const string GUID = "zigzag.randommoonfx";
         const string NAME = "RandomMoonFX";
-        const string VERSION = "1.3.3";
+        const string VERSION = "1.3.4";
 
         public static Plugin instance;
         private readonly Harmony harmony = new Harmony(GUID);
@@ -23,6 +24,7 @@ namespace RandomMoonFX
         public bool IsStarting = false;
         public Terminal? terminal;
         public int terminalCostOfItems = -5;
+        public bool constellationsCompatibility = false;
         public List<string> VisitedMoons = new List<string>();
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051")]
@@ -54,6 +56,8 @@ namespace RandomMoonFX
                 AnimationTime = config.AnimationTimeOverride.Value;
             if (config.GaletryCompany.Value && Chainloader.PluginInfos.ContainsKey("JacobG5.WesleyMoons"))
                 GaletryID = -1;
+            if (config.ConstellationsCheck.Value && Chainloader.PluginInfos.ContainsKey("com.github.darmuh.LethalConstellations"))
+                constellationsCompatibility = true;
         }
 
         public bool LastDayOfQuota()

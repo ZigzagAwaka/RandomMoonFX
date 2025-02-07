@@ -1,3 +1,7 @@
+## 1.3.4
+- **Added**
+    - Added compatibility with [LethalConstellations](https://thunderstore.io/c/lethal-company/p/darmuh/LethalConstellations/) if you have it installed (`LethalConstellations check` config added)
+
 ## 1.3.3
 - **Added**
     - Added compatibility with [Wesleys_Moons](https://thunderstore.io/c/lethal-company/p/Magic_Wesley/Wesleys_Moons/): Galetry will now be chosen on the last day instead of Gordion if you have this mod installed (`Galetry Company Moon` config added)

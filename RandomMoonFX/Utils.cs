@@ -26,9 +26,9 @@ namespace RandomMoonFX
         {
             if (selectableLevel.PlanetName == "44 Liquidation" || selectableLevel.PlanetName == "71 Gordion" || (Plugin.instance.GaletryID != -99 && selectableLevel.PlanetName == "98 Galetry"))
                 return false;
-            if (IsMoonBlacklisted(selectableLevel))
+            if (IsMoonBlacklisted(selectableLevel) || (Plugin.instance.constellationsCompatibility && !IsMoonValidFromConstellation(selectableLevel)))
                 return false;
-            if (!Plugin.config.ExcludePreviouslyVisited.Value)
+            if (!Plugin.config.ExcludePreviouslyVisited.Value || Plugin.instance.constellationsCompatibility)
                 return true;
             if (Plugin.instance.VisitedMoons.Count == 0 || !Plugin.instance.VisitedMoons.Contains(selectableLevel.PlanetName))
             {
@@ -58,6 +58,11 @@ namespace RandomMoonFX
                     moonName = moonName[1..];
                 return Plugin.config.MoonsBlacklist.Exists((i) => i == moonName);
             }
+        }
+
+        static public bool IsMoonValidFromConstellation(SelectableLevel selectableLevel)
+        {
+            return LethalConstellations.PluginCore.ClassMapper.IsLevelInConstellation(selectableLevel);
         }
     }
 }

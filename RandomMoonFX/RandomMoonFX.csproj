@@ -16,6 +16,9 @@
     <Reference Include="BepInEx">
       <HintPath>..\..\_utils\Librairies\BepInEx.dll</HintPath>
     </Reference>
+    <Reference Include="LethalConstellations">
+      <HintPath>..\..\_utils\Librairies\LethalConstellations.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Netcode.Runtime">
       <HintPath>..\..\_utils\Librairies\Unity.Netcode.Runtime.dll</HintPath>
     </Reference>
