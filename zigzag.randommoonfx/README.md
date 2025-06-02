@@ -6,7 +6,7 @@ You don't need to route to a moon with the terminal, just use the ship's lever a
 
 When there is 0 days left for the profit quota, it will always route to the Company Building.
 
-Compatible with v62/v64/v69 of Lethal Company.
+Compatible with v62/v64/v69/v70 of Lethal Company.
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/RandomMoonFX/main/preview.gif)
 
@@ -25,6 +25,10 @@ Compatible with v62/v64/v69 of Lethal Company.
 
 ### Not compatible with
 - [InfectedCompany](https://thunderstore.io/c/lethal-company/p/InfectedCompany/InfectedCompany/) : causes some infected players desyncs (I think?)
+- `LLL Ship Lever Fix` feature in [ScienceBird_Tweaks](https://thunderstore.io/c/lethal-company/p/ScienceBird/ScienceBird_Tweaks/) : this should be disabled in the config
+
+### About LLL
+- Not directly concerning this mod, if you have LLL installed you may *sometimes* notice a softlock during the moon loading phase concerning the ship's lever (it depends on your installed mods). If you have this issue or just want to be safe, then install [LLLHotreloadPatch](https://thunderstore.io/c/lethal-company/p/dopadream/LLLHotreloadPatch/) and the issue should be fixed
 
 ### Features
 This mod is an upgrade of the original **RandomMoon** mod and adds some bug fixes and improvements to make it compatible with the latest game updates.

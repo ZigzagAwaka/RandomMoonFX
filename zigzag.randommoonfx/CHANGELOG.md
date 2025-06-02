@@ -1,3 +1,8 @@
+## 1.3.5
+- **Updated**
+    - Recompiled for v70
+    - Updated README
+
 ## 1.3.4
 - **Added**
     - Added compatibility with [LethalConstellations](https://thunderstore.io/c/lethal-company/p/darmuh/LethalConstellations/) if you have it installed (`LethalConstellations check` config added)
