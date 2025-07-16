@@ -24,7 +24,7 @@ namespace RandomMoonFX
 
         static public bool IsMoonValid(SelectableLevel selectableLevel)
         {
-            if (selectableLevel.PlanetName == "44 Liquidation" || selectableLevel.PlanetName == "71 Gordion" || (Plugin.instance.GaletryID != -99 && selectableLevel.PlanetName == "98 Galetry"))
+            if (selectableLevel.PlanetName == "44 Liquidation" || selectableLevel.PlanetName == "71 Gordion" || selectableLevel.PlanetName == "98 Galetry" || selectableLevel.PlanetName == "745-Oxyde")
                 return false;
             if (IsMoonBlacklisted(selectableLevel) || (Plugin.instance.constellationsCompatibility && !IsMoonValidFromConstellation(selectableLevel)))
                 return false;
@@ -37,7 +37,7 @@ namespace RandomMoonFX
             }
             else
             {
-                if (Plugin.instance.VisitedMoons.Count >= StartOfRound.Instance.levels.Length - 2 - (Plugin.instance.GaletryID != -99 ? 1 : 0) - Plugin.config.MoonsBlacklist.Count)
+                if (Plugin.instance.VisitedMoons.Count >= StartOfRound.Instance.levels.Length - 1 - Plugin.instance.NbOfCompanyMoons - Plugin.config.MoonsBlacklist.Count)
                 {
                     Plugin.instance.VisitedMoons.Clear();
                     Plugin.instance.VisitedMoons.Add(selectableLevel.PlanetName);

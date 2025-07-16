@@ -17,6 +17,7 @@ namespace RandomMoonFX
         public readonly ConfigEntry<bool> QuotaCheck;
         public readonly ConfigEntry<bool> RandomizeLastDay;
         public readonly ConfigEntry<bool> GaletryCompany;
+        public readonly ConfigEntry<bool> OxydeCompany;
         public readonly ConfigEntry<bool> ActivateFreeMoons;
 
         public Config(ConfigFile cfg)
@@ -32,6 +33,7 @@ namespace RandomMoonFX
             QuotaCheck = cfg.Bind("Last day check", "Quota check", true, "If true, the ship will route to Gordion on the last day if quota has not been met yet. If false, there will be no quota check and the ship will route to Gordion only on the last day.");
             RandomizeLastDay = cfg.Bind("Last day check", "Randomize last day", false, "Enable this if you don't want to auto route to Gordion on the last day if there is not enough scraps in the ship to meet quota (other players potential dead bodies included), this allows you to randomize a moon on the last day to mess around but you will be fired at the end of the day.");
             GaletryCompany = cfg.Bind("Last day check", "Galetry Company Moon", true, "Enable compatibility with Wesley's Moons special company moon 'Galetry'. This will allow this mod to route to Galetry on the last day instead of Gordion.\nWill be automatically false if Wesley's Moons is not installed.");
+            OxydeCompany = cfg.Bind("Last day check", "Oxyde Company Moon", false, "Enable compatibility with CodeRebirth's special company moon 'Oxyde'. This will allow this mod to route to Oxyde on the last day instead of Gordion.\nWill be automatically false if CodeRebirth is not installed.");
             ActivateFreeMoons = cfg.Bind("Misc", "Activate Free Moons", true, "Prevent credits consumption when manually routing to a moon in the terminal. This is for avoiding people wasting money on a moon that is not going to be played because of the randomization method.\nThis config works even if 'Activate Random Moons' is false.");
             cfg.Save();
             cfg.SaveOnConfigSet = true;

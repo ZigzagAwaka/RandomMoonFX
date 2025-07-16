@@ -6,7 +6,7 @@ You don't need to route to a moon with the terminal, just use the ship's lever a
 
 When there is 0 days left for the profit quota, it will always route to the Company Building.
 
-Compatible with v62/v64/v69/v70 of Lethal Company.
+Compatible with v62/v64/v69/v70/v72 of Lethal Company.
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/RandomMoonFX/main/preview.gif)
 
@@ -18,6 +18,7 @@ Compatible with v62/v64/v69/v70 of Lethal Company.
 - This mod is compatible with [LethalLevelLoader](https://thunderstore.io/c/lethal-company/p/IAmBatby/LethalLevelLoader/) and works with any custom moon that uses this API.
 - Compatible with [Celestial_Tint](https://thunderstore.io/c/lethal-company/p/sfDesat/Celestial_Tint/) and [Chameleon](https://thunderstore.io/c/lethal-company/p/ButteryStancakes/Chameleon/) special routing animations.
 - Compatibility with [Wesleys_Moons](https://thunderstore.io/c/lethal-company/p/Magic_Wesley/Wesleys_Moons/): the chosen moon on the last day will be Galetry instead of Gordion
+- Compatibility with [CodeRebirth](https://thunderstore.io/c/lethal-company/p/XuXiaolan/CodeRebirth/): the chosen moon on the last day will be Oxyde instead of Gordion (false by default, needs to be activated in the config)
 - Works well with the better screens feature of [GeneralImprovements](https://thunderstore.io/c/lethal-company/p/ShaosilGaming/GeneralImprovements/).
 - No issues from the ship's lever fix of [LethalFixes](https://thunderstore.io/c/lethal-company/p/Dev1A3/LethalFixes/).
 - Compatible with [LethalConstellations](https://thunderstore.io/c/lethal-company/p/darmuh/LethalConstellations/) so that the moon is chosen from the current constellation

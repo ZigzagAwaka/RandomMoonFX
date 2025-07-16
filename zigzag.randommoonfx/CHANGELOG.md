@@ -1,3 +1,8 @@
+## 1.3.6
+- **Updated**
+    - Compatibility with [CodeRebirth](https://thunderstore.io/c/lethal-company/p/XuXiaolan/CodeRebirth/) : the chosen moon on the last day will be Oxyde instead of Gordion (false by default, needs to be activated in the config)
+    - Company Moons should now all be ignored by the randomization, the ship will only route to the chosen one on the last day
+
 ## 1.3.5
 - **Updated**
     - Recompiled for v70

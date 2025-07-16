@@ -1,6 +1,6 @@
 {
     "name": "RandomMoonFX",
-    "version_number": "1.3.5",
+    "version_number": "1.3.6",
     "website_url": "https://github.com/ZigzagAwaka/RandomMoonFX",
     "description": "Randomize the moon every day upon using the ship's lever. Configurable free moons for modpack testing and compatible with LethalLevelLoader, Celestial_Tint, Chameleon and Wesley's Moons Galetry.",
     "dependencies": [
