@@ -1,3 +1,16 @@
+## 1.4.0
+- **Added**
+    - Added `Company routing mode` config that allows users to choose how to mod works when auto routing to a Company Moon on the last day
+        - Random: will randomize between all your installed Company Moons (vanilla or modded) and select one
+        - Select: allow users to specify in the `Selected Company` config which moon is going to be forced routed to on the last day
+        - Manual: there will be no auto routing, and players must route manually to the chosen Company Moon
+- **Updated**
+    - Blacklisted moons names in the config are now normalized so writting a name with number or spaces will now work as expected (ie: both Assurance or 220-Assurance will work)
+    - Company Moons that are blacklisted will now be ignored by the randomization when `Company routing mode = Random`
+    - Removed the manual modded Company moons configs as it's not needed anymore
+- **Fixed**
+    - Fixed modded Company Moons detection not working in some cases
+
 ## 1.3.6
 - **Updated**
     - Compatibility with [CodeRebirth](https://thunderstore.io/c/lethal-company/p/XuXiaolan/CodeRebirth/) : the chosen moon on the last day will be Oxyde instead of Gordion (false by default, needs to be activated in the config)

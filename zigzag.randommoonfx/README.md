@@ -17,8 +17,7 @@ Compatible with v62/v64/v69/v70/v72 of Lethal Company.
 ### Compatibility
 - This mod is compatible with [LethalLevelLoader](https://thunderstore.io/c/lethal-company/p/IAmBatby/LethalLevelLoader/) and works with any custom moon that uses this API.
 - Compatible with [Celestial_Tint](https://thunderstore.io/c/lethal-company/p/sfDesat/Celestial_Tint/) and [Chameleon](https://thunderstore.io/c/lethal-company/p/ButteryStancakes/Chameleon/) special routing animations.
-- Compatibility with [Wesleys_Moons](https://thunderstore.io/c/lethal-company/p/Magic_Wesley/Wesleys_Moons/): the chosen moon on the last day will be Galetry instead of Gordion
-- Compatibility with [CodeRebirth](https://thunderstore.io/c/lethal-company/p/XuXiaolan/CodeRebirth/): the chosen moon on the last day will be Oxyde instead of Gordion (false by default, needs to be activated in the config)
+- Compatibility with Modded Company Moons such as the ones in [Wesleys_Moons](https://thunderstore.io/c/lethal-company/p/Magic_Wesley/Wesleys_Moons/) or [CodeRebirth](https://thunderstore.io/c/lethal-company/p/XuXiaolan/CodeRebirth/)
 - Works well with the better screens feature of [GeneralImprovements](https://thunderstore.io/c/lethal-company/p/ShaosilGaming/GeneralImprovements/).
 - No issues from the ship's lever fix of [LethalFixes](https://thunderstore.io/c/lethal-company/p/Dev1A3/LethalFixes/).
 - Compatible with [LethalConstellations](https://thunderstore.io/c/lethal-company/p/darmuh/LethalConstellations/) so that the moon is chosen from the current constellation
@@ -37,9 +36,10 @@ This mod is an upgrade of the original **RandomMoon** mod and adds some bug fixe
 - Configurable time for the routing animation, other than the default values
 - A config to make moons only be chosen once, will reset if every moons have been visited (false by default)
 - Configurable moons blacklist to prevent specific moons to be chosen randomly
+- An option to select one of your installed Company Moons (vanilla or modded) as the one routed to on the last day, OR have all your Company Moons randomized between them all
 - Synchronize the chosen moon info on the ship's monitor
 - Removes the 'Halt!' warning on the last day when auto routing to the Company Building
-- Prevent the random selection of Gordion before the last day of the quota
+- Prevent the random selection of Company Moons before the last day of the quota
 - Prevent the random selection of Liquidation since the moon is disabled in vanilla (fixed a softlock)
 - A config to have all moons free even if you disable random moons
 - Updated to the latest version of the game and compatible with LLL to avoid any desync between players

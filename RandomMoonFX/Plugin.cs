@@ -10,31 +10,36 @@ namespace RandomMoonFX
     [BepInDependency("com.github.darmuh.LethalConstellations", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("butterystancakes.lethalcompany.chameleon", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("CelestialTint", BepInDependency.DependencyFlags.SoftDependency)]
-    [BepInDependency("JacobG5.WesleyMoons", BepInDependency.DependencyFlags.SoftDependency)]
-    [BepInDependency("CodeRebirth", BepInDependency.DependencyFlags.SoftDependency)]
     public class Plugin : BaseUnityPlugin
     {
         const string GUID = "zigzag.randommoonfx";
         const string NAME = "RandomMoonFX";
-        const string VERSION = "1.3.6";
+        const string VERSION = "1.4.0";
 
         public static Plugin instance;
         private readonly Harmony harmony = new Harmony(GUID);
         internal static Config config { get; private set; } = null!;
 
-        private readonly int GordionID = 3;
-        public int ModdedCompanyID = -99;
-        public bool IsGaletryCompany = false;
-        public bool IsOxydeCompany = false;
-        public int NbOfCompanyMoons = 1;
+        private readonly int GordionID = 3;  // vanilla Company moon ID is always 3, used for fallback errors
         public float AnimationTime = 1.5f;
         public bool IsStarting = false;
+        public CompanyRM CompanyRoutingMode;
+        public string SelectedCompanyName = "";  // used if CompanyRoutingMode Select
+        public int SelectedCompanyID = -1;  // used if CompanyRoutingMode Select
+
         public Terminal? terminal;
         public int terminalCostOfItems = -5;
         public bool constellationsCompatibility = false;
-        public List<string> VisitedMoons = new List<string>();
 
-        public string ActualCompanyName => ModdedCompanyID == -99 ? "71 Gordion" : IsOxydeCompany ? "745-Oxyde" : "98 Galetry";
+        public List<string> VisitedMoons = new List<string>();
+        public List<SelectableLevel> CompanyMoons = new List<SelectableLevel>();  // used if CompanyRoutingMode Random
+
+        public enum CompanyRM
+        {
+            Random,
+            Select,
+            Manual
+        }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051")]
         void Awake()
@@ -57,31 +62,22 @@ namespace RandomMoonFX
         {
             config = new Config(base.Config);
             config.SetupCustomConfigs();
+
+            CompanyRoutingMode = config.CompanyRoutingMode.Value switch
+            {
+                "Random" => CompanyRM.Random,
+                "Select" => CompanyRM.Select,
+                "Manual" => CompanyRM.Manual,
+                _ => CompanyRM.Random
+            };
+            SelectedCompanyName = Utils.GetNormalizedMoonName(config.SelectedCompanyName.Value);
+
             if (config.ChameleonAnimation.Value && Chainloader.PluginInfos.ContainsKey("butterystancakes.lethalcompany.chameleon"))
                 AnimationTime = 7.5f;
             if (config.CelestialTintAnimation.Value && Chainloader.PluginInfos.ContainsKey("CelestialTint"))
                 AnimationTime = 4f;
             if (config.AnimationTimeOverride.Value >= 0f)
                 AnimationTime = config.AnimationTimeOverride.Value;
-            if (Chainloader.PluginInfos.ContainsKey("JacobG5.WesleyMoons"))
-            {
-                NbOfCompanyMoons++;
-                if (config.GaletryCompany.Value)
-                {
-                    ModdedCompanyID = -1;
-                    IsGaletryCompany = true;
-                }
-            }
-            if (Chainloader.PluginInfos.ContainsKey("CodeRebirth"))
-            {
-                NbOfCompanyMoons++;
-                if (config.OxydeCompany.Value)
-                {
-                    ModdedCompanyID = -1;
-                    IsOxydeCompany = true;
-                    IsGaletryCompany = false;
-                }
-            }
             if (config.ConstellationsCheck.Value && Chainloader.PluginInfos.ContainsKey("com.github.darmuh.LethalConstellations"))
                 constellationsCompatibility = true;
         }
@@ -98,32 +94,43 @@ namespace RandomMoonFX
 
         public void RouteRandomPlanet()
         {
+            Utils.SearchCompanyMoons();
             if (LastDayOfQuota())
             {
-                if (ModdedCompanyID != -99)
+                int levelID = GordionID;
+                switch (CompanyRoutingMode)
                 {
-                    if (ModdedCompanyID == -1)
-                    {
-                        foreach (var level in StartOfRound.Instance.levels)
+                    case CompanyRM.Random:
+                        var company = CompanyMoons[UnityEngine.Random.Range(0, CompanyMoons.Count)];
+                        Logger.LogInfo($"Navigating to Company {company.PlanetName}");
+                        levelID = company.levelID;
+                        break;
+                    case CompanyRM.Select:
+                        if (SelectedCompanyID == -1)
                         {
-                            if (level.PlanetName == ActualCompanyName)
+                            foreach (var level in StartOfRound.Instance.levels)
                             {
-                                ModdedCompanyID = level.levelID;
-                                break;
+                                if (SelectedCompanyName == Utils.GetNormalizedMoonName(level))
+                                {
+                                    SelectedCompanyID = level.levelID;
+                                    break;
+                                }
                             }
                         }
-                    }
-                    if (ModdedCompanyID != -1)
-                    {
-                        Logger.LogInfo("Force navigating to " + ActualCompanyName);
-                        StartOfRound.Instance.ChangeLevelServerRpc(ModdedCompanyID, FindObjectOfType<Terminal>().groupCredits);
-                        IsStarting = true;
+                        if (SelectedCompanyID != -1)
+                        {
+                            Logger.LogInfo("Force navigating to " + SelectedCompanyName);
+                            levelID = SelectedCompanyID;
+                        }
+                        else
+                        {
+                            Logger.LogError("Selected Company Moon " + SelectedCompanyName + " was not found. Force navigating to the Company Building instead.");
+                        }
+                        break;
+                    default:
                         return;
-                    }
-                    Logger.LogError("Modded Company Moon was not found");
                 }
-                Logger.LogInfo("Force navigating to the Company Building");
-                StartOfRound.Instance.ChangeLevelServerRpc(GordionID, FindObjectOfType<Terminal>().groupCredits);
+                StartOfRound.Instance.ChangeLevelServerRpc(levelID, FindObjectOfType<Terminal>().groupCredits);
             }
             else
             {

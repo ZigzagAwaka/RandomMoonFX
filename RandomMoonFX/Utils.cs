@@ -24,7 +24,7 @@ namespace RandomMoonFX
 
         static public bool IsMoonValid(SelectableLevel selectableLevel)
         {
-            if (selectableLevel.PlanetName == "44 Liquidation" || selectableLevel.PlanetName == "71 Gordion" || selectableLevel.PlanetName == "98 Galetry" || selectableLevel.PlanetName == "745-Oxyde")
+            if (selectableLevel.PlanetName == "44 Liquidation" || Plugin.instance.CompanyMoons.Exists((i) => i.PlanetName == selectableLevel.PlanetName))
                 return false;
             if (IsMoonBlacklisted(selectableLevel) || (Plugin.instance.constellationsCompatibility && !IsMoonValidFromConstellation(selectableLevel)))
                 return false;
@@ -37,7 +37,7 @@ namespace RandomMoonFX
             }
             else
             {
-                if (Plugin.instance.VisitedMoons.Count >= StartOfRound.Instance.levels.Length - 1 - Plugin.instance.NbOfCompanyMoons - Plugin.config.MoonsBlacklist.Count)
+                if (Plugin.instance.VisitedMoons.Count >= StartOfRound.Instance.levels.Length - 1 - Plugin.instance.CompanyMoons.Count - Plugin.config.MoonsBlacklist.Count)
                 {
                     Plugin.instance.VisitedMoons.Clear();
                     Plugin.instance.VisitedMoons.Add(selectableLevel.PlanetName);
@@ -52,12 +52,36 @@ namespace RandomMoonFX
             if (Plugin.config.MoonsBlacklist.Count == 0)
                 return false;
             else
+                return Plugin.config.MoonsBlacklist.Exists((i) => i == GetNormalizedMoonName(selectableLevel));
+        }
+
+        static public void SearchCompanyMoons()
+        {
+            if (Plugin.instance.CompanyMoons.Count > 0)
             {
-                var moonName = Regex.Replace(selectableLevel.PlanetName, "^[0-9]+", string.Empty);
-                if (moonName[0] == ' ')
-                    moonName = moonName[1..];
-                return Plugin.config.MoonsBlacklist.Exists((i) => i == moonName);
+                return;
             }
+            foreach (var level in StartOfRound.Instance.levels)
+            {
+                if (!level.planetHasTime && !level.spawnEnemiesAndScrap  // these 2 flags deermine if the moon is a Company moon
+                    && !IsMoonBlacklisted(level))
+                {
+                    Plugin.instance.CompanyMoons.Add(level);
+                }
+            }
+        }
+
+        static public string GetNormalizedMoonName(SelectableLevel selectableLevel)
+        {
+            return GetNormalizedMoonName(selectableLevel.PlanetName);
+        }
+
+        static public string GetNormalizedMoonName(string planetName)
+        {
+            var moonName = Regex.Replace(planetName, "^[0-9]+", string.Empty);
+            if (moonName[0] == ' ' || moonName[0] == '-')
+                moonName = moonName[1..];
+            return moonName;
         }
 
         static public bool IsMoonValidFromConstellation(SelectableLevel selectableLevel)

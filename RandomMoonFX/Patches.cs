@@ -11,6 +11,10 @@ namespace RandomMoonFX
         [HarmonyPatch("StartGame")]
         public static bool RandomizeMoonPatch()
         {
+            if (Plugin.instance.CompanyRoutingMode == Plugin.CompanyRM.Manual && Plugin.instance.LastDayOfQuota())
+            {
+                return true;
+            }
             if (Plugin.instance.IsStarting)
             {
                 Plugin.instance.IsStarting = false;
@@ -31,7 +35,11 @@ namespace RandomMoonFX
             {
                 yield return result.Current;
             }
-            if (Plugin.instance.IsStarting)
+            if (Plugin.instance.CompanyRoutingMode == Plugin.CompanyRM.Manual && Plugin.instance.LastDayOfQuota())
+            {
+                yield break;
+            }
+            else if (Plugin.instance.IsStarting)
             {
                 StartMatchLever lever = Object.FindObjectOfType<StartMatchLever>();
                 lever.triggerScript.interactable = false;
@@ -50,7 +58,7 @@ namespace RandomMoonFX
         [HarmonyPatch("BeginHoldingInteractOnLever")]
         public static bool DisabledLastDayWarningPatch()
         {
-            if (StartOfRound.Instance.CanChangeLevels() && Plugin.instance.LastDayOfQuota())
+            if (StartOfRound.Instance.CanChangeLevels() && Plugin.instance.LastDayOfQuota() && Plugin.instance.CompanyRoutingMode != Plugin.CompanyRM.Manual)
             {
                 return false;
             }
@@ -63,7 +71,7 @@ namespace RandomMoonFX
         public static void DisabledLongHoldTime(ref StartMatchLever __instance)
         {
             if (TimeOfDay.Instance.daysUntilDeadline <= 0 && __instance.playersManager.inShipPhase && StartOfRound.Instance.currentLevel.planetHasTime
-                && Plugin.instance.LastDayOfQuota())
+                && Plugin.instance.LastDayOfQuota() && Plugin.instance.CompanyRoutingMode != Plugin.CompanyRM.Manual)
             {
                 __instance.triggerScript.timeToHold = 0.7f;
             }
