@@ -1,3 +1,7 @@
+## 1.4.1
+- **Updated**
+    - Updated to work for v73, and still works on older versions of the game
+
 ## 1.4.0
 - **Added**
     - Added `Company routing mode` config that allows users to choose how to mod works when auto routing to a Company Moon on the last day

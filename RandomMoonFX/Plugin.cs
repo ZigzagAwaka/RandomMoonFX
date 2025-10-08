@@ -14,7 +14,7 @@ namespace RandomMoonFX
     {
         const string GUID = "zigzag.randommoonfx";
         const string NAME = "RandomMoonFX";
-        const string VERSION = "1.4.0";
+        const string VERSION = "1.4.1";
 
         public static Plugin instance;
         private readonly Harmony harmony = new Harmony(GUID);

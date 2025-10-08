@@ -6,7 +6,7 @@ You don't need to route to a moon with the terminal, just use the ship's lever a
 
 When there is 0 days left for the profit quota, it will always route to the Company Building.
 
-Compatible with v62/v64/v69/v70/v72 of Lethal Company.
+Compatible with v62/v64/v69/v70/v72/v73 of Lethal Company.
 
 ![Preview](https://raw.githubusercontent.com/ZigzagAwaka/RandomMoonFX/main/preview.gif)
 
