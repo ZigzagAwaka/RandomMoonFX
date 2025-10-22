@@ -15,7 +15,7 @@ Compatible with v62/v64/v69/v70/v72/v73 of Lethal Company.
 ##
 
 ### Compatibility
-- This mod is compatible with [LethalLevelLoader](https://thunderstore.io/c/lethal-company/p/IAmBatby/LethalLevelLoader/) and works with any custom moon that uses this API.
+- This mod is compatible with [LethalLevelLoader](https://thunderstore.io/c/lethal-company/p/IAmBatby/LethalLevelLoader/) / [LethalLevelLoaderUpdated](https://thunderstore.io/c/lethal-company/p/pacoito/LethalLevelLoaderUpdated/) and works with any custom moon that uses this API.
 - Compatible with [Celestial_Tint](https://thunderstore.io/c/lethal-company/p/sfDesat/Celestial_Tint/) and [Chameleon](https://thunderstore.io/c/lethal-company/p/ButteryStancakes/Chameleon/) special routing animations.
 - Compatibility with Modded Company Moons such as the ones in [Wesleys_Moons](https://thunderstore.io/c/lethal-company/p/Magic_Wesley/Wesleys_Moons/) or [CodeRebirth](https://thunderstore.io/c/lethal-company/p/XuXiaolan/CodeRebirth/)
 - Works well with the better screens feature of [GeneralImprovements](https://thunderstore.io/c/lethal-company/p/ShaosilGaming/GeneralImprovements/).
@@ -25,10 +25,9 @@ Compatible with v62/v64/v69/v70/v72/v73 of Lethal Company.
 
 ### Not compatible with
 - [InfectedCompany](https://thunderstore.io/c/lethal-company/p/InfectedCompany/InfectedCompany/) : causes some infected players desyncs (I think?)
-- `LLL Ship Lever Fix` feature in [ScienceBird_Tweaks](https://thunderstore.io/c/lethal-company/p/ScienceBird/ScienceBird_Tweaks/) : this should be disabled in the config
 
-### About LLL
-- Not directly concerning this mod, if you have LLL installed you may *sometimes* notice a softlock during the moon loading phase concerning the ship's lever (it depends on your installed mods). If you have this issue or just want to be safe, then install [LLLHotreloadPatch](https://thunderstore.io/c/lethal-company/p/dopadream/LLLHotreloadPatch/) and the issue should be fixed
+### About LethalLevelLoader
+- If you have LethalLevelLoader installed, please install [LethalLevelLoaderUpdated](https://thunderstore.io/c/lethal-company/p/pacoito/LethalLevelLoaderUpdated/) because without it wou may have issues
 
 ### Features
 This mod is an upgrade of the original **RandomMoon** mod and adds some bug fixes and improvements to make it compatible with the latest game updates.

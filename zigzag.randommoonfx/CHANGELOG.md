@@ -1,3 +1,7 @@
+## 1.4.2
+- **Updated**
+    - Updated README, yes that is all
+
 ## 1.4.1
 - **Updated**
     - Updated to work for v73, and still works on older versions of the game
