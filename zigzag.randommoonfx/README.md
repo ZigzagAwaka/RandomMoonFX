@@ -27,7 +27,7 @@ Compatible with v62/v64/v69/v70/v72/v73 of Lethal Company.
 - [InfectedCompany](https://thunderstore.io/c/lethal-company/p/InfectedCompany/InfectedCompany/) : causes some infected players desyncs (I think?)
 
 ### About LethalLevelLoader
-- If you have LethalLevelLoader installed, please install [LethalLevelLoaderUpdated](https://thunderstore.io/c/lethal-company/p/pacoito/LethalLevelLoaderUpdated/) because without it wou may have issues
+- If you have LethalLevelLoader installed, please install [LethalLevelLoaderUpdated](https://thunderstore.io/c/lethal-company/p/pacoito/LethalLevelLoaderUpdated/) because without it you may have issues
 
 ### Features
 This mod is an upgrade of the original **RandomMoon** mod and adds some bug fixes and improvements to make it compatible with the latest game updates.
