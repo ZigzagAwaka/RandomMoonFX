@@ -1,3 +1,7 @@
+## 1.4.3
+- **Updated**
+    - Recompiled for v81 but should still work fine with older versions of the game
+
 ## 1.4.2
 - **Updated**
     - Updated README, yes that is all
