@@ -26,7 +26,7 @@ namespace RandomMoonFX
         {
             if (selectableLevel.PlanetName == "44 Liquidation" || Plugin.instance.CompanyMoons.Exists((i) => i.PlanetName == selectableLevel.PlanetName))
                 return false;
-            if (IsMoonBlacklisted(selectableLevel) || (Plugin.instance.constellationsCompatibility && !IsMoonValidFromConstellation(selectableLevel)))
+            if (IsMoonBlacklisted(selectableLevel) || !IsMoonStartingMode(selectableLevel) || (Plugin.instance.constellationsCompatibility && !IsMoonValidFromConstellation(selectableLevel)))
                 return false;
             if (!Plugin.config.ExcludePreviouslyVisited.Value || Plugin.instance.constellationsCompatibility)
                 return true;
@@ -37,7 +37,7 @@ namespace RandomMoonFX
             }
             else
             {
-                if (Plugin.instance.VisitedMoons.Count >= StartOfRound.Instance.levels.Length - 1 - Plugin.instance.CompanyMoons.Count - Plugin.config.MoonsBlacklist.Count)
+                if (Plugin.instance.VisitedMoons.Count >= (!IsStartingMoonsModeEnabled() ? StartOfRound.Instance.levels.Length - 1 - Plugin.instance.CompanyMoons.Count - Plugin.config.MoonsBlacklist.Count : Plugin.config.StartingMoons.Count))
                 {
                     Plugin.instance.VisitedMoons.Clear();
                     Plugin.instance.VisitedMoons.Add(selectableLevel.PlanetName);
@@ -53,6 +53,19 @@ namespace RandomMoonFX
                 return false;
             else
                 return Plugin.config.MoonsBlacklist.Exists((i) => i == GetNormalizedMoonName(selectableLevel));
+        }
+
+        static public bool IsStartingMoonsModeEnabled()
+        {
+            return Plugin.config.StartingMoons.Count > 0 && Plugin.config.StartingMoonsDuration.Value > 0
+                && Plugin.config.StartingMoonsDuration.Value > StartOfRound.Instance.gameStats.daysSpent;
+        }
+
+        static public bool IsMoonStartingMode(SelectableLevel selectableLevel)
+        {
+            if (!IsStartingMoonsModeEnabled())
+                return true; // true here means the moon is valid because starting mode is disabled!
+            return Plugin.config.StartingMoons.Exists((i) => i == GetNormalizedMoonName(selectableLevel));
         }
 
         static public void SearchCompanyMoons()

@@ -1,3 +1,7 @@
+## 1.4.4
+- **Added**
+    - Added two new configs `Starting Moons List` and `Starting Moons Duration`, you can use those to define a list of specific moons that will be selected by the randomization for the specified ingame days duration (by default, the list is empty)
+
 ## 1.4.3
 - **Updated**
     - Recompiled for v81 but should still work fine with older versions of the game

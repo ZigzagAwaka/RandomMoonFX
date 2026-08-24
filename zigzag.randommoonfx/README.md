@@ -23,11 +23,12 @@ Compatible with v62/v64/v69/v70/v72/v73/v80/v81 of Lethal Company.
 - Compatible with [LethalConstellations](https://thunderstore.io/c/lethal-company/p/darmuh/LethalConstellations/) so that the moon is chosen from the current constellation
 - Quota rollover mods are supported with the config `Quota check = false`
 
-### Not compatible with
-- [InfectedCompany](https://thunderstore.io/c/lethal-company/p/InfectedCompany/InfectedCompany/) : causes some infected players desyncs (I think?)
+### Probably not compatible with
+- [InfectedCompany](https://thunderstore.io/c/lethal-company/p/InfectedCompany/InfectedCompany/) : may cause some infected players desyncs (I think?)
+- [ScienceBird_Tweaks](https://thunderstore.io/c/lethal-company/p/ScienceBird/ScienceBird_Tweaks/) : the config `LLL - Start Ship Lever Fix` may cause lever issues if activated
 
 ### About LethalLevelLoader
-- If you have LethalLevelLoader installed, please install [LethalLevelLoaderUpdated](https://thunderstore.io/c/lethal-company/p/pacoito/LethalLevelLoaderUpdated/) because without it you may have issues
+- If you use LethalLevelLoader, please make sure you have version 1.6.9 or newer installed, because otherwise you may have issues
 
 ### Features
 This mod is an upgrade of the original **RandomMoon** mod and adds some bug fixes and improvements to make it compatible with the latest game updates.
@@ -36,6 +37,7 @@ This mod is an upgrade of the original **RandomMoon** mod and adds some bug fixe
 - A config to make moons only be chosen once, will reset if every moons have been visited (false by default)
 - Configurable moons blacklist to prevent specific moons to be chosen randomly
 - An option to select one of your installed Company Moons (vanilla or modded) as the one routed to on the last day, OR have all your Company Moons randomized between them all
+- A config to select some moons that will be chosen for a specific starting duration, meaning you can choose a list of simple moons to avoid getting harder moons for the start of the game
 - Synchronize the chosen moon info on the ship's monitor
 - Removes the 'Halt!' warning on the last day when auto routing to the Company Building
 - Prevent the random selection of Company Moons before the last day of the quota

@@ -7,17 +7,24 @@ namespace RandomMoonFX
     internal class Config
     {
         public readonly List<string> MoonsBlacklist = new List<string>();
+        public readonly List<string> StartingMoons = new List<string>();
+
         public readonly ConfigEntry<bool> CelestialTintAnimation;
         public readonly ConfigEntry<bool> ChameleonAnimation;
         public readonly ConfigEntry<float> AnimationTimeOverride;
+
         public readonly ConfigEntry<bool> ActivateRandomMoons;
         public readonly ConfigEntry<bool> ExcludePreviouslyVisited;
         public readonly ConfigEntry<bool> ConstellationsCheck;
         public readonly ConfigEntry<string> MoonsBlacklistStr;
+        public readonly ConfigEntry<string> StartingMoonsStr;
+        public readonly ConfigEntry<int> StartingMoonsDuration;
+
         public readonly ConfigEntry<bool> QuotaCheck;
         public readonly ConfigEntry<bool> RandomizeLastDay;
         public readonly ConfigEntry<string> CompanyRoutingMode;
         public readonly ConfigEntry<string> SelectedCompanyName;
+
         public readonly ConfigEntry<bool> ActivateFreeMoons;
 
         public Config(ConfigFile cfg)
@@ -32,6 +39,8 @@ namespace RandomMoonFX
             ExcludePreviouslyVisited = cfg.Bind("Randomization method", "Exclude previously visited", false, "Enable this if you want to exclude already visited moons from the randomization method. This will reset when all moons have been seen once.");
             ConstellationsCheck = cfg.Bind("Randomization method", "LethalConstellations check", true, "Enable compatibility with LethalConstellations by preventing the randomization method to choose a moon that is not included in the current constellations.\nWill be automatically false if LethalConstellations is not installed.");
             MoonsBlacklistStr = cfg.Bind("Randomization method", "Moons Blacklist", "", "Comma separated list of moons that will never be chosen by the randomization method, if you don't want to play on specifics moons.\nThis Experimentation,Embrion,Asteroid-14,Espira is a valid example.");
+            StartingMoonsStr = cfg.Bind("Randomization method", "Starting Moons List", "", "Comma separated list of moons that will be chosen for the start of your game, this lets you define some easier moons to be picked to avoid getting hard moons at the start.\nIf moons written here are not found, it could get you errors so make sure to correctly write the names!");
+            StartingMoonsDuration = cfg.Bind("Randomization method", "Starting Moons Duration", 8, "The ingame days duration at which the Starting Moons List will be taken into account.\nThere is 4 days per quotas. Will have no effect if Starting Moons List is empty or if this setting is less than 1.");
 
             QuotaCheck = cfg.Bind("Last day check", "Quota check", true, "If true, the ship will route to the Company on the last day if quota has not been met yet. If false, there will be no quota check and the ship will route to the Company only on the last day.");
             RandomizeLastDay = cfg.Bind("Last day check", "Randomize last day", false, "Enable this if you don't want to auto route to the Company on the last day if there is not enough scraps in the ship to meet quota (other players potential dead bodies included), this allows you to randomize a moon on the last day to mess around but you will be fired at the end of the day.");
@@ -46,11 +55,19 @@ namespace RandomMoonFX
 
         public void SetupCustomConfigs()
         {
-            if (MoonsBlacklistStr == null || MoonsBlacklistStr.Value == "")
-                return;
-            foreach (string moonName in MoonsBlacklistStr.Value.Split(',').Select(s => s.Trim()))
+            if (MoonsBlacklistStr != null && MoonsBlacklistStr.Value != "")
             {
-                MoonsBlacklist.Add(Utils.GetNormalizedMoonName(moonName));
+                foreach (string moonName in MoonsBlacklistStr.Value.Split(',').Select(s => s.Trim()))
+                {
+                    MoonsBlacklist.Add(Utils.GetNormalizedMoonName(moonName));
+                }
+            }
+            if (StartingMoonsStr != null && StartingMoonsStr.Value != "")
+            {
+                foreach (string moonName in StartingMoonsStr.Value.Split(',').Select(s => s.Trim()))
+                {
+                    StartingMoons.Add(Utils.GetNormalizedMoonName(moonName));
+                }
             }
         }
     }
